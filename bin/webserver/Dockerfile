@@ -30,7 +30,9 @@ libonig-dev && \
     apt-get -y --no-install-recommends install --fix-missing libcurl4 \
 libcurl4-openssl-dev \
 zip \
-openssl && \
+openssl \
+libxml2-dev \
+&& \
     rm -rf /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -53,7 +55,11 @@ RUN docker-php-ext-install pdo_mysql && \
     docker-php-ext-install zip && \
     docker-php-ext-install -j$(nproc) intl && \
     docker-php-ext-install mbstring && \
-    docker-php-ext-install gettext
+    docker-php-ext-install gettext && \
+    docker-php-ext-install ctype && \
+    docker-php-ext-install bcmath && \
+   #docker-php-ext-install openssl && \
+    docker-php-ext-install xml
 
 # Install Freetype 
 RUN apt-get -y update && \
